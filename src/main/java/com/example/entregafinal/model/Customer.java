@@ -5,31 +5,24 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "customers")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Sale> sales;
 
     // Getters y Setters
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;

@@ -31,7 +31,6 @@ public class ProductService {
             Product actual = productExistente.get();
             actual.setName(product.getName());
             actual.setPrice(product.getPrice());
-            actual.setStock(product.getStock());
             return productRepository.save(actual);
         } else {
             return null;

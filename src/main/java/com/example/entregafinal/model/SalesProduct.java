@@ -4,30 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sales_products")
 public class SalesProduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    // Campo temporal para recibir el productId desde el request
+    @Transient
+    private int productId;
+
+    @ManyToOne
     @JoinColumn(name = "saleId")
     @JsonIgnore
     private Sale sale;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
 
-    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     // Getters y Setters
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -55,5 +53,14 @@ public class SalesProduct {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    // Getter y Setter para productId
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }
