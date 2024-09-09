@@ -43,7 +43,7 @@ git clone https://github.com/mmunarriz/Java_EntregaProyectoFinal
 src/main/java/com/example/entregafinal/EntregafinalApplication.java
 ```
 
-##  Documentacion del proyecto:
+##  Documentacion del proyecto - Swagger:
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
