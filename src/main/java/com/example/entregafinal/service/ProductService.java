@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -17,7 +18,11 @@ public class ProductService {
     }
 
     public void eliminarProduct(int id) {
-        productRepository.deleteById(id);
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()) {
+            productRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Producto con ID " + id + " no encontrado");
+        }
     }
-
 }

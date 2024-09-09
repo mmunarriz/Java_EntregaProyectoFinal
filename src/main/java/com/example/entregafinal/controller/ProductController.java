@@ -5,6 +5,7 @@ import com.example.entregafinal.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @RequestMapping("/products")
 @Tag(name = "Products", description = "Operaciones relacionadas con los productos")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 
@@ -24,8 +26,12 @@ public class ProductController {
 
     @DeleteMapping("/eliminar/{id}")
     @Operation(summary="Eliminar un producto por ID", description="Elimina un producto utilizando su numero de ID")
-    public void eliminarProduct(@PathVariable int id) {
-        productService.eliminarProduct(id);
+    public ResponseEntity<String> eliminarProduct(@PathVariable int id) {
+        try {
+            productService.eliminarProduct(id);
+            return ResponseEntity.ok("Producto eliminado con éxito");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
-
 }
