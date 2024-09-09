@@ -9,8 +9,9 @@ import java.util.List;
 @Entity
 @Schema(
         description = "Modelo de la venta",
-        example = "{ \"customerId\": 1, \"date\": \"2024-09-09\", \"salesProducts\": [ { \"productId\": 1, \"quantity\": 3 }, { \"productId\": 2, \"quantity\": 1 } ] }"
+        example = "{ \"customer\": { \"id\": 1 }, \"date\": \"2024-09-09\", \"salesProducts\": [ { \"productId\": 1, \"quantity\": 3 }, { \"productId\": 2, \"quantity\": 1 } ] }"
 )
+
 public class Sale {
 
     @Id
@@ -23,7 +24,6 @@ public class Sale {
 
     @ManyToOne
     @JoinColumn(name = "customerId")
-    @JsonIgnore
 
     @Schema(description = "ID del cliente que efectúa la compra", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
     private Customer customer;
