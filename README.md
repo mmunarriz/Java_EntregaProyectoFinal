@@ -49,10 +49,13 @@ http://localhost:8080/swagger-ui/index.html
 ```
 
 ##  Validaciones:
-Producto:
-- Al eliminar un producto, si ocurre una excepción (por ejemplo, si el producto no existe), el servidor responde con un código de estado 404 y un mensaje descriptivo.
+Productos:
+- Al eliminar un Producto, si ocurre una excepción (por ejemplo, si el Producto no existe), el servidor responde con un código de estado 404 y un mensaje descriptivo.
 En caso de éxito, el servidor devuelve un estado 200 (OK) con el mensaje "Producto eliminado con éxito".
 
+Clientes:
+- Al eliminar un Cliente, si ocurre una excepción (por ejemplo, si el Cliente no existe), el servidor responde con un código de estado 404 y un mensaje descriptivo.
+  En caso de éxito, el servidor devuelve un estado 200 (OK) con el mensaje "Cliente eliminado con éxito".
 
 
 Disfruta el proyecto :)

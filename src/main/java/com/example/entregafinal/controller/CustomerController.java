@@ -5,6 +5,7 @@ import com.example.entregafinal.service.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,9 +24,14 @@ public class CustomerController {
     }
 
     @DeleteMapping("/eliminar/{id}")
-    @Operation(summary="Eliminar un cliente por ID", description="Elimina un cliente utilizando su numero de ID")
-    public void eliminarCustomer(@PathVariable int id) {
-        customerService.eliminarCustomer(id);
+    @Operation(summary="Eliminar un cliente por ID", description="Elimina un cliente utilizando su número de ID")
+    public ResponseEntity<String> eliminarCustomer(@PathVariable int id) {
+        try {
+            customerService.eliminarCustomer(id);
+            return ResponseEntity.ok("Cliente eliminado con éxito");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
 
 }
