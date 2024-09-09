@@ -16,24 +16,8 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Optional<Product> buscarProduct(int id) {
-        return productRepository.findById(id);
-    }
-
     public void eliminarProduct(int id) {
         productRepository.deleteById(id);
     }
 
-    public Product actualizarProduct(int id, Product product) {
-        Optional<Product> productExistente = productRepository.findById(id);
-
-        if (productExistente.isPresent()) {
-            Product actual = productExistente.get();
-            actual.setName(product.getName());
-            actual.setPrice(product.getPrice());
-            return productRepository.save(actual);
-        } else {
-            return null;
-        }
-    }
 }
