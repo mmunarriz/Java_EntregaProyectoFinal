@@ -57,5 +57,10 @@ Clientes:
 - Al eliminar un Cliente, si ocurre una excepción (por ejemplo, si el Cliente no existe), el servidor responde con un código de estado 404 y un mensaje descriptivo.
   En caso de éxito, el servidor devuelve un estado 200 (OK) con el mensaje "Cliente eliminado con éxito".
 
+Ventas:
+- Al crear una venta, primero se verifica si el Cliente que intenta realizar la compra existe en la base de datos. 
+  Luego se verifica que cada uno de los Productos exista en la base de datos. Si el cliente o alguno de los Productos no existen, el servidor responde con un código de estado 404 y un mensaje descriptivo.
+  En caso de éxito, el servidor devuelve un estado 200 (OK) con el mensaje "Venta creada con éxito".
+
 
 Disfruta el proyecto :)

@@ -5,9 +5,8 @@ import com.example.entregafinal.service.SaleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/sales")
@@ -18,9 +17,13 @@ public class SaleController {
     private SaleService saleService;
 
     @PostMapping("/agregar")
-    @Operation(summary="Agregar un nueva venta", description = "Agrega un nueva venta al sistema")
-    public Sale agregarSale(@RequestBody Sale sale) {
-        return saleService.agregarSale(sale);
+    @Operation(summary = "Agregar una nueva venta", description = "Agrega una nueva venta al sistema")
+    public ResponseEntity<String> agregarSale(@RequestBody Sale sale) {
+        try {
+            saleService.agregarSale(sale);
+            return ResponseEntity.ok("Venta creada con éxito");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
     }
-
 }
